@@ -1,3 +1,6 @@
+Yeicol Salas Morales
+FI24036547
+
 Fuentes consultadas
 https://es.stackoverflow.com/questions/536333/invertir-un-int
 
