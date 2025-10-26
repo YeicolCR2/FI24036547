@@ -1,6 +1,29 @@
 import java.util.ArrayDeque;
 import java.util.Arrays;
 import java.util.Deque;
+import java.util.Random;
+
+/**
+ * TheQueue
+ * ----------------------------------------------------------------
+ * Errores de consola al compilar:
+ * C:\Users\Games\IdeaProjects\CasoPractico1(Estructura de datos)\FI24036547\CP1\Colas\TheQueue.java:52:26
+ * java: cannot find symbol
+ * symbol:   class Random
+ * location: class TheQueue<Type>
+ * ----------------------------------------------------------------
+ *  Improvement
+ *  Acomodar el método dequeue() para que funcione correctamente.
+ *  Acomodar el método getFront() para que funcione correctamente.
+ *  No usar condicionales
+ *  Editar el metodo pool y el peak.
+ *  ----------------------------------------------------------------
+ *  Updates
+ *  Los metodos dequeue() y getFront() fueron modificados para utilizar los metodos poll() y peek() de la clase Deque respectivamente.
+ *  El metodo getCodons() funcione correctamente con el cambio aplicado.
+ *  Un codon es una secuencia de tres nucleotidos.
+ */
+
 
 public class TheQueue<Type> implements TheQueueInterface<Type> {
 
@@ -15,11 +38,11 @@ public class TheQueue<Type> implements TheQueueInterface<Type> {
     }
 
     public Type dequeue() {
-        return null;
+        return _queue.poll();
     }
 
     public Type getFront() {
-        return null;
+        return _queue.peek();
     }
 
     public boolean isEmpty() {
@@ -33,6 +56,14 @@ public class TheQueue<Type> implements TheQueueInterface<Type> {
     public String[] getCodons() {
         var size = _queue.size();
         String[] codons = new String[size / 3];
+        // Construir codones
+        for (int i = 0; i < codons.length; i++) {
+            String n1 = (String) dequeue();
+            String n2 = (String) dequeue();
+            String n3 = (String) dequeue();
+
+            codons[i] = n1 + n2 + n3;
+        }
         return codons;
     }
 
@@ -49,7 +80,7 @@ public class TheQueue<Type> implements TheQueueInterface<Type> {
                 "T", // [3]
         };
         TheQueueInterface<String> queue = new TheQueue<String>();
-        var random = new Random();
+        var random = new Random(); // Error: cannot find symbol --> import java.util.Random;
         for (; amount > 0; amount--) {
             var index = random.nextInt(4);
             var amino = nucleotides[index];

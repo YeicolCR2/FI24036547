@@ -1,6 +1,29 @@
 import java.util.Random;
 import java.util.Stack;
 
+
+/**
+ * TheStack
+ * ----------------------------------------------------------------
+ * TheStack.java:4: error: TheStack is not abstract and does not override abstract method size() in TheStackInterface
+ * public class TheStack<Type> implements TheStackInterface<Type> {
+ * TheStack.java:35: error: size() in TheStack cannot implement size() in TheStackInterface
+ * public int size() {
+ * return type int is not compatible with Integer
+ * TheStack.java:31: error: empty() in TheStack cannot implement empty() in TheStackInterface
+ * public boolean empty() {
+ return type boolean is not compatible with Boolean
+ 3 errors
+ * ----------------------------------------------------------------
+ *  Improvement
+ *  Arreglar el push para que funcione correctamente con la capacidad.
+ * Retornar un valorBoolean
+ *  ----------------------------------------------------------------
+ *  Updates
+ * El metodo push, modificar el pool y peek
+ */
+
+
 public class TheStack<Type> implements TheStackInterface<Type> {
 
     private Stack<Type> _stack;
@@ -15,24 +38,30 @@ public class TheStack<Type> implements TheStackInterface<Type> {
     public Boolean push(Type item) {
         var available = _stack.size() < _capacity;
         if (available) {
-            push(item);
+            _stack.push(item); // Llamada recursiva corregida
         }
         return available;
     }
 
-    public Type pop() {
+    public Type pop() { // manejar el caso de pila vacía
+        if (_stack.isEmpty()) {
+            return null;
+        }
         return _stack.pop();
     }
 
-    public Type peek() {
+    public Type peek() {    //manejar el caso de pila vacía
+        if (_stack.isEmpty()) {
+            return null;
+        }
         return _stack.peek();
     }
 
-    public boolean empty() {
+    public Boolean empty() {
         return _stack.isEmpty();
     }
 
-    public int size() {
+    public Integer size() { // Integer en lugar de int
         return _stack.size();
     }
 
