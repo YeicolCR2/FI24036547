@@ -11,19 +11,72 @@ public class ListDoublyCircular<T> implements ListInterface<T> {
         tail = null;
     }
 
-    public void addFirst(T value) {
+    public void addFirst(T value) { //agrega al inicio
+        var newNode = new NodeDoubly<T>(value);
+        if (isEmpty()) {
+            head = newNode;
+            tail = newNode;
+            head.next = head;
+            head.prev = head;
+        } else {
+            newNode.next = head;
+            newNode.prev = tail;
+            head.prev = newNode;
+            tail.next = newNode;
+            head = newNode;
+        }
     }
 
-    public void addLast(T value) {
+    public void addLast(T value) { //agrega al final
+        var newNode = new NodeDoubly<T>(value);
+        if (isEmpty()) {
+            head = newNode;
+            tail = newNode;
+            head.next = tail;
+            head.prev = head;
+        } else {
+            newNode.prev = tail;
+            newNode.next = head;
+            tail.next = newNode;
+            head.prev = newNode;
+            tail = newNode;
+        }
     }
 
-    public T removeFirst() {
-        T first = null;
+    public T removeFirst() {    //elimina al inicio
+        if (isEmpty()) {
+            return null;
+        }
+
+        T first = head.data;
+
+        if (head == tail) {
+            head = null;
+            tail = null;
+        } else {
+            head = head.next;
+            head.prev = tail;
+            tail.next = head;
+        }
         return first;
     }
 
-    public T removeLast() {
-        T last = null;
+    public T removeLast() { //elimina al final
+        if (isEmpty()) {
+            return null;
+        }
+
+        T last = tail.data;
+
+        if (head == tail) {
+            head = null;
+            tail = null;
+        } else {
+            tail = tail.prev;
+            tail.next = head;
+            head.prev = tail;
+        }
+
         return last;
     }
 
