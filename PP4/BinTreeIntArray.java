@@ -16,8 +16,6 @@ public class BinTreeIntArray {
 
     public void insert(int value) {
 
-        // Actualizar
-
 
             int i = 0;
             while (i < _tree.length) {
