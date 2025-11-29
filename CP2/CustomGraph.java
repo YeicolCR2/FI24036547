@@ -19,6 +19,10 @@ public class CustomGraph {
         int tgt = Arrays.binarySearch(_chars, target);
         
         // Actualizar
+
+        if (src >= 0 && tgt >= 0) {
+            this._matrix[src][tgt]++;
+        }
     }
 
     public String getMatrix() {

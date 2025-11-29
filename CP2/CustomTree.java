@@ -16,6 +16,26 @@ public class CustomTree {
 
         // Actualizar
 
+        if (node == null) {
+            return new TreeNode(tf, word);
+        }
+
+
+        if (tf < node.getTf()) {
+            // getLeft() y setLeft()
+            node.setLeft(insert(node.getLeft(), tf, word));
+        }
+
+        else if (tf > node.getTf()) {
+            //  getRight() y setRight()
+            node.setRight(insert(node.getRight(), tf, word));
+        }
+
+        else {
+            // Usamos el método addWord() de TreeNode (que internamente hace push a la pila)
+            node.addWord(word);
+        }
+
         return node;
     }
 
